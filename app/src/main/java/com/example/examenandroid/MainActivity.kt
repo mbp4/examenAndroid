@@ -1,6 +1,7 @@
 package com.example.examenandroid
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.ContextMenu
 import android.view.MenuInflater
@@ -15,6 +16,7 @@ import android.widget.ListView
 import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.activity.ComponentActivity
+import java.util.Locale
 
 class MainActivity : ComponentActivity() {
     private lateinit var textRecordatorio: EditText
@@ -62,6 +64,26 @@ class MainActivity : ComponentActivity() {
             actualizarLista()
         }
 
+        btnIdioma.setOnClickListener {
+            if (btnIdioma.isChecked) {
+                cambiarIdioma("en")
+            } else {
+                cambiarIdioma("es")
+            }
+        }
+
+    }
+
+    private fun cambiarIdioma(idioma: String) {
+        val locale = Locale(idioma)
+        Locale.setDefault(locale)
+        val config = Configuration()
+        config.locale = locale
+        resources.updateConfiguration(config, resources.displayMetrics)
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
     private fun actualizarLista() {
