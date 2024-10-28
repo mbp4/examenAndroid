@@ -1,47 +1,70 @@
 package com.example.examenandroid
 
 import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.ListView
+import android.widget.Toast
 import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.examenandroid.ui.theme.ExamenAndroidTheme
 
 class MainActivity : ComponentActivity() {
+    private lateinit var textRecordatorio: EditText
+    private lateinit var botonImagen: ImageButton
+    private lateinit var lista: ListView
+    private lateinit var btnPendientes: Button
+    private lateinit var btnHechas: Button
+    private lateinit var adapter: ArrayAdapter<String>
+    private lateinit var recordatoriosLista: ArrayList<String>
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            ExamenAndroidTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
+        setContentView(R.layout.activity_principal)
+
+        textRecordatorio = findViewById(R.id.textRecordatorio)
+        botonImagen = findViewById(R.id.imageButton)
+        lista = findViewById(R.id.lista)
+        btnPendientes = findViewById(R.id.Pendientes)
+        btnHechas = findViewById(R.id.Hechas)
+        recordatoriosLista = ArrayList()
+
+        adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, recordatoriosLista)
+        lista.adapter = adapter
+
+        botonImagen.setOnClickListener {
+            añadirRecordatorio()
         }
+
+        btnPendientes.setOnClickListener {
+            mostrarPendientes()
+        }
+
+        btnHechas.setOnClickListener {
+            mostrarHechas()
+        }
+
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
+    private fun mostrarHechas() {
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ExamenAndroidTheme {
-        Greeting("Android")
+    }
+
+    private fun mostrarPendientes() {
+
+    }
+
+    private fun añadirRecordatorio() {
+        var recordatorio = textRecordatorio.text.toString()
+
+        if (recordatorio.isNotEmpty()) {
+
+            recordatoriosLista.add(recordatorio)
+            adapter.notifyDataSetChanged()
+            textRecordatorio.setText("")
+            Toast.makeText(this, "Recordatorio añadido", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Error al introducir el recordatorio", Toast.LENGTH_SHORT).show()
+        }
     }
 }
