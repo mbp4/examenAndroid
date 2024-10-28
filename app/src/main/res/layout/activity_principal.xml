@@ -51,7 +51,7 @@
             android:id="@+id/imageButton"
             android:layout_width="115dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/baseline_add_24" />
+            android:src="@drawable/baseline_add_box_24" />
 
     </LinearLayout>
 
