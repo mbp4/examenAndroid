@@ -51,13 +51,24 @@ class MainActivity : ComponentActivity() {
 
         btnPendientes.setOnClickListener {
             pendientes = true
-            mostrarPendientes()
+            actualizarLista()
         }
 
         btnHechas.setOnClickListener {
             pendientes = false
-            mostrarHechas()
+            actualizarLista()
         }
+
+    }
+
+    private fun actualizarLista() {
+            recordatoriosLista.clear()
+            if (pendientes) {
+                recordatoriosLista.addAll(tareasPendientes)
+            } else {
+                recordatoriosLista.addAll(tareasHechas)
+            }
+            adapter.notifyDataSetChanged()
 
     }
 
@@ -72,6 +83,7 @@ class MainActivity : ComponentActivity() {
             R.id.action_delete -> {
                 val tarea = recordatoriosLista.removeAt(info.position)
                 adapter.notifyDataSetChanged()
+                tareasPendientes.remove(tarea)
                 Toast.makeText(this, "$tarea eliminada", Toast.LENGTH_SHORT).show()
                 true
             }
@@ -79,21 +91,13 @@ class MainActivity : ComponentActivity() {
                 val tarea = recordatoriosLista[info.position]
                 recordatoriosLista[info.position] = "$tarea (Hecho)"
                 adapter.notifyDataSetChanged()
+                tareasPendientes.remove(tarea)
                 tareasHechas.add(tarea)
                 Toast.makeText(this, "$tarea marcada como hecha", Toast.LENGTH_SHORT).show()
                 true
             }
             else -> super.onContextItemSelected(item)
         }
-    }
-
-
-    private fun mostrarHechas() {
-        tareasHechas
-    }
-
-    private fun mostrarPendientes() {
-
     }
 
     private fun añadirRecordatorio() {
@@ -104,6 +108,7 @@ class MainActivity : ComponentActivity() {
             recordatoriosLista.add(recordatorio)
             adapter.notifyDataSetChanged()
             textRecordatorio.setText("")
+            tareasPendientes.add(recordatorio)
             Toast.makeText(this, "Recordatorio añadido", Toast.LENGTH_SHORT).show()
         } else {
             Toast.makeText(this, "Error al introducir el recordatorio", Toast.LENGTH_SHORT).show()
