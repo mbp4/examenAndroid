@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">AndroidExam</string>
+    <string name="titulo">My Reminders</string>
+    <string name="add_hint">Add a reminder</string>
+    <string name="pendientes">Pending</string>
+    <string name="hechas">Done</string>
+    <string name="toggle_text_on">English</string>
+    <string name="toggle_text_off">Spanish</string>
+    <string name="toast_recordatorio_added">Reminder added</string>
+    <string name="toast_error_recordatorio">Error adding the reminder</string>
+</resources>
+

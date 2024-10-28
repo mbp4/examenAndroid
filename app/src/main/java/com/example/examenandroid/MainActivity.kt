@@ -35,12 +35,17 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_principal)
 
+        val preferences = getSharedPreferences("ajustes", MODE_PRIVATE)
+        val language = preferences.getString("idioma", "es") ?: "es"
+        cambiarIdioma(language)
+
         textRecordatorio = findViewById(R.id.textRecordatorio)
         botonImagen = findViewById(R.id.imageButton)
         lista = findViewById(R.id.lista)
         btnPendientes = findViewById(R.id.Pendientes)
         btnHechas = findViewById(R.id.Hechas)
         btnIdioma = findViewById(R.id.btnIdioma)
+
         recordatoriosLista = ArrayList()
         tareasPendientes = ArrayList()
         tareasHechas = ArrayList()
@@ -50,41 +55,33 @@ class MainActivity : ComponentActivity() {
 
         registerForContextMenu(lista)
 
-        botonImagen.setOnClickListener {
-            añadirRecordatorio()
-        }
-
-        btnPendientes.setOnClickListener {
-            pendientes = true
-            actualizarLista()
-        }
-
-        btnHechas.setOnClickListener {
-            pendientes = false
-            actualizarLista()
-        }
+        botonImagen.setOnClickListener { añadirRecordatorio() }
+        btnPendientes.setOnClickListener { pendientes = true; actualizarLista() }
+        btnHechas.setOnClickListener { pendientes = false; actualizarLista() }
 
         btnIdioma.setOnClickListener {
-            if (btnIdioma.isChecked) {
-                cambiarIdioma("en")
-            } else {
-                cambiarIdioma("es")
-            }
+            if (btnIdioma.isChecked) cambiarIdioma("es") else cambiarIdioma("en")
         }
 
     }
 
     private fun cambiarIdioma(idioma: String) {
-        val locale = Locale(idioma)
-        Locale.setDefault(locale)
-        val config = Configuration()
-        config.locale = locale
-        resources.updateConfiguration(config, resources.displayMetrics)
+        val currentLanguage = resources.configuration.locales[0].language
+        if (currentLanguage != idioma) {
+            val locale = Locale(idioma)
+            Locale.setDefault(locale)
+            val config = Configuration(resources.configuration)
+            config.setLocale(locale)
+            resources.updateConfiguration(config, resources.displayMetrics)
 
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-        finish()
+            val preferences = getSharedPreferences("ajustes", MODE_PRIVATE)
+            preferences.edit().putString("idioma", idioma).apply()
+
+            recreate()
+        }
     }
+
+
 
     private fun actualizarLista() {
             recordatoriosLista.clear()

@@ -1,3 +1,11 @@
 <resources>
-    <string name="app_name">examenAndroid</string>
+    <string name="app_name">ExamenAndroid</string>
+    <string name="titulo">Mis Recordatorios</string>
+    <string name="add_hint">Añada un recordatorio</string>
+    <string name="pendientes">Pendientes</string>
+    <string name="hechas">Hechas</string>
+    <string name="toggle_text_on">English</string>
+    <string name="toggle_text_off">Español</string>
+    <string name="toast_recordatorio_added">Recordatorio añadido</string>
+    <string name="toast_error_recordatorio">Error al introducir el recordatorio</string>
 </resources>
