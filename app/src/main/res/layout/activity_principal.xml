@@ -9,6 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:background="@color/colorFondo1"
         >
 
         <TextView
@@ -17,6 +18,7 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:text="@string/titulo"
+            android:textColor="@color/black"
             android:textSize="24sp" />
 
     <ToggleButton
@@ -26,6 +28,7 @@
         android:layout_weight="1"
         android:text="@string/toggle_text_off"
         android:textOff="@string/toggle_text_off"
+        android:background="@color/botones"
         android:textOn="@string/toggle_text_on"
         />
 
@@ -50,8 +53,6 @@
             android:layout_height="wrap_content"
             android:src="@drawable/baseline_add_24" />
 
-
-
     </LinearLayout>
 
     <ListView
@@ -70,6 +71,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/Pendientes"
             android:text="@string/pendientes"
+            android:background="@color/colorBtn2"
             android:layout_marginEnd="6dp"
             />
 
@@ -78,6 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hechas"
+            android:background="@color/botones"
             android:id="@+id/Hechas"
             />
 

@@ -81,8 +81,6 @@ class MainActivity : ComponentActivity() {
         }
     }
 
-
-
     private fun actualizarLista() {
             recordatoriosLista.clear()
             if (pendientes) {
