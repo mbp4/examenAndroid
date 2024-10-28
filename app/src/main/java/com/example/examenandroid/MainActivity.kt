@@ -13,6 +13,7 @@ import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ListView
 import android.widget.Toast
+import android.widget.ToggleButton
 import androidx.activity.ComponentActivity
 
 class MainActivity : ComponentActivity() {
@@ -26,6 +27,7 @@ class MainActivity : ComponentActivity() {
     private lateinit var tareasPendientes: ArrayList<String>
     private lateinit var tareasHechas: ArrayList<String>
     private var pendientes: Boolean = true
+    private lateinit var btnIdioma: ToggleButton
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +38,7 @@ class MainActivity : ComponentActivity() {
         lista = findViewById(R.id.lista)
         btnPendientes = findViewById(R.id.Pendientes)
         btnHechas = findViewById(R.id.Hechas)
+        btnIdioma = findViewById(R.id.btnIdioma)
         recordatoriosLista = ArrayList()
         tareasPendientes = ArrayList()
         tareasHechas = ArrayList()
