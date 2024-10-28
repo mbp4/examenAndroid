@@ -6,11 +6,12 @@ link al repositorio:
 
 En este proyecto se nos pedía realizar una pantalla que mostrará mediante un ListView una lista de recordatorios.
 
-### Actuvidad principal
+### Actividad principal
 
 Aquí tendremos toda la lógica del programa, su pseudocódigo sería:
 
 '''
+
 Clase MainActivity:
     Variables privadas:
         textRecordatorio: EditText
@@ -115,4 +116,8 @@ Clase MainActivity:
 
 '''
 
-Esta activity se compone de 
+Esta activity se compone de varios TextEdit para que el usuario pueda introducir los datos necesarios, el ListView con todos los recordatorios y su correspondiente Menu Contextual (el cual aparece al dejar pulsado sobre un elemento) y dos botones:
+
+  -> Botón que muestra las tareas pendientes. 
+
+  -> Botón que muestra las tareas ya completadas.
