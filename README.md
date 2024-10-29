@@ -80,27 +80,34 @@ Clase MainActivity:
             Añadir tareasHechas a recordatoriosLista
         Notificar cambios en adapter
 
-    Método onCreateContextMenu(menu, v, menuInfo):
-        Llamar a super.onCreateContextMenu(menu, v, menuInfo)
-        Inflar menú desde R.menu.context_menu
+    Método onCreateContextMenu(menu: ContextMenu, v: View, menuInfo: ContextMenu.ContextMenuInfo)
+        Inflar menú desde "context_menu"
+        
+        Obtener información del elemento seleccionado en la lista
+        Cambiar el color de fondo del elemento seleccionado a "colorFondo1"
 
-    Método onContextItemSelected(item):
-        info = obtener información de menú
-        Si item.itemId == R.id.action_delete:
-            tarea = eliminar tarea de recordatoriosLista
-            Notificar cambios en adapter
-            Eliminar tarea de tareasPendientes
+    Método onContextItemSelected(item: MenuItem): Boolean
+        Obtener información de posición del elemento seleccionado en lista
+        Obtener referencia de vista seleccionada
+        Definir color de fondo "noSeleccionado" como blanco
+        
+        Si el item seleccionado es "action_delete":
+            Remover elemento de recordatoriosLista en la posición seleccionada
+            Actualizar adaptador
+            Remover tarea de tareasPendientes
             Mostrar mensaje "tarea eliminada"
-            Retornar true
-        Si item.itemId == R.id.action_done:
-            tarea = recordatoriosLista[info.position]
-            Actualizar recordatoriosLista[info.position] a "$tarea (Hecho)"
-            Notificar cambios en adapter
-            Eliminar tarea de tareasPendientes
-            Añadir tarea a tareasHechas
+            Cambiar fondo de vista seleccionada a color "noSeleccionado"
+            Devolver true
+            
+        Si el item seleccionado es "action_done":
+            Marcar tarea como "Hecho" en la lista
+            Actualizar adaptador
+            Remover tarea de tareasPendientes y añadir a tareasHechas
             Mostrar mensaje "tarea marcada como hecha"
-            Retornar true
-        Retornar resultado de super.onContextItemSelected(item)
+            Cambiar fondo de vista seleccionada a color "noSeleccionado"
+            Devolver true
+            
+        Para cualquier otra opción, restablecer color de fondo a "noSeleccionado" y devolver resultado de super.onContextItemSelected(item)
 
     Método añadirRecordatorio():
         recordatorio = obtener texto de textRecordatorio
