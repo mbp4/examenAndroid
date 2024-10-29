@@ -58,7 +58,7 @@
     <ListView
         android:id="@+id/lista"
         android:layout_width="match_parent"
-        android:layout_height="454dp" />
+        android:layout_height="562dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,7 +71,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/Pendientes"
             android:text="@string/pendientes"
-            android:background="@color/colorBtn2"
+            android:background="@color/colorFondo1"
             android:layout_marginEnd="6dp"
             />
 
@@ -80,7 +80,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hechas"
-            android:background="@color/botones"
+            android:background="@color/colorFondo1"
             android:id="@+id/Hechas"
             />
 

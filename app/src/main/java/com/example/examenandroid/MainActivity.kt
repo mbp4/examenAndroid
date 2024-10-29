@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.os.Bundle
 import android.view.ContextMenu
+import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
@@ -16,6 +17,7 @@ import android.widget.ListView
 import android.widget.Toast
 import android.widget.ToggleButton
 import androidx.activity.ComponentActivity
+import androidx.core.content.ContextCompat
 import java.util.Locale
 
 class MainActivity : ComponentActivity() {
@@ -95,16 +97,25 @@ class MainActivity : ComponentActivity() {
     override fun onCreateContextMenu(menu: ContextMenu?, v: View?, menuInfo: ContextMenu.ContextMenuInfo?) {
         super.onCreateContextMenu(menu, v, menuInfo)
         menuInflater.inflate(R.menu.context_menu, menu)
+
+        val info = menuInfo as AdapterView.AdapterContextMenuInfo
+        val colorSeleccionado = ContextCompat.getColor(this, R.color.colorFondo1)
+
+        lista.getChildAt(info.position)?.setBackgroundColor(colorSeleccionado)
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         val info = item.menuInfo as AdapterView.AdapterContextMenuInfo
+        val seleccionado = lista.getChildAt(info.position)
+        val noSeleccionado = ContextCompat.getColor(this, R.color.white)
+
         return when (item.itemId) {
             R.id.action_delete -> {
                 val tarea = recordatoriosLista.removeAt(info.position)
                 adapter.notifyDataSetChanged()
                 tareasPendientes.remove(tarea)
                 Toast.makeText(this, "$tarea eliminada", Toast.LENGTH_SHORT).show()
+                seleccionado?.setBackgroundColor(noSeleccionado)
                 true
             }
             R.id.action_done -> {
@@ -114,9 +125,13 @@ class MainActivity : ComponentActivity() {
                 tareasPendientes.remove(tarea)
                 tareasHechas.add(tarea)
                 Toast.makeText(this, "$tarea marcada como hecha", Toast.LENGTH_SHORT).show()
+                seleccionado?.setBackgroundColor(noSeleccionado)
                 true
             }
-            else -> super.onContextItemSelected(item)
+            else -> {
+                seleccionado?.setBackgroundColor(noSeleccionado)
+                super.onContextItemSelected(item)
+            }
         }
     }
 
