@@ -1,6 +1,6 @@
 # examenAndroid
  
-link al repositorio: 
+link al repositorio: https://github.com/mbp4/examenAndroid.git
 
 ## Descripción 
 
@@ -10,7 +10,7 @@ En este proyecto se nos pedía realizar una pantalla que mostrará mediante un L
 
 Aquí tendremos toda la lógica del programa, su pseudocódigo sería:
 
-'''
+```
 
 Clase MainActivity:
     Variables privadas:
@@ -114,7 +114,7 @@ Clase MainActivity:
         Sino:
             Mostrar mensaje "Error al introducir el recordatorio"
 
-'''
+```
 
 Esta activity se compone de varios TextEdit para que el usuario pueda introducir los datos necesarios, el ListView con todos los recordatorios y su correspondiente Menu Contextual (el cual aparece al dejar pulsado sobre un elemento) y dos botones:
 
